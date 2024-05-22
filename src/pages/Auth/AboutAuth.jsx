@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 const AboutAuth = () => {
   return (
-    <div>
+    <div style={{ marginRight: '20px' }}>
       <h1>Join the Stack Overflow community</h1>
       <p>Get unstuck — ask a question</p>
       <p>Unlock new privileges like voting and commenting</p>
@@ -18,4 +18,4 @@ const AboutAuth = () => {
   )
 }
 
-export default AboutAuth
+export default AboutAuth;

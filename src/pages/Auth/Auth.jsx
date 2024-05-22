@@ -1,11 +1,68 @@
-import React from 'react'
+import React, { useState } from 'react';
+import './Auth.css';
+import icon from '../../assets/StackOverflowIcon.png';
+import AboutAuth from './AboutAuth';
 
 const Auth = () => {
-  return (
-    <div>
-      <h1>Auth</h1>
-    </div>
-  )
-}
+  const [isSignup, setIsSignup] = useState(false);
 
-export default Auth
+  const handleSwitch = () => {
+    setIsSignup(!isSignup);
+  };
+
+  return (
+    <section className='auth-section'>
+      {
+        isSignup && <AboutAuth/>
+      }
+      <div className='auth-container'>
+        {!isSignup && <img src={icon} alt='Stack Overflow' className='login-logo' />}
+        <form>
+          {isSignup && (
+            <label htmlFor="name">
+              <h4>Display Name</h4>
+              <input type='text' id='name' name='name' />
+            </label>
+          )}
+          <label htmlFor="email">
+            <h4>Email</h4>
+            <input type="email" name='email' id='email' />
+          </label>
+          <label htmlFor="password">
+            <div style={{display:"flex", justifyContent :"space-between"}}>
+              <p style={{color:"#007ac6", fontSize:"13px"}}>Password</p>
+              {!isSignup && <h4>Forgot Password?</h4>}
+            </div>
+            <input type="password" name='password' id='password' />
+            {isSignup && <p style={{ color: '#007ac6', fontSize: '13px' }}> Must contain 8+ characters, including at least 1 letter and 1 number</p> }
+          </label>
+          {isSignup && (
+            <label htmlFor='check'>
+              <input type='checkbox' id="check" />
+              <p style={{ color: '#007ac6', fontSize: '13px' }}> A strong password can be memorable to you but <br />
+              nearly impossible for someone else to guess.</p>
+            </label>
+          )}
+          <button type="submit" className="auth-btn">
+            {isSignup ? 'Sign up' : 'Log in'}
+          </button>
+          {isSignup && (
+            <p style={{ color: '#007ac6', fontSize: '13px' }}>
+              By checking this "Sign Up",<br/>
+              you are agreeing to our <span style={{ color: '#007ac6', fontSize: '13px' }}>terms and conditions</span> and <span style={{ color: '#007ac6', fontSize: '13px' }}>cookie policy</span>.
+            </p>
+          )}
+        </form>
+        <p>
+          {isSignup ? 'Already have an account?' : "Don't have an account?"}
+          <button type="button" className='handle-switch-btn' onClick={handleSwitch}>
+            {isSignup ? 'Log In' : 'Sign Up'}
+          </button>
+        </p>
+      </div>
+    </section>
+  );
+};
+
+export default Auth;
+
